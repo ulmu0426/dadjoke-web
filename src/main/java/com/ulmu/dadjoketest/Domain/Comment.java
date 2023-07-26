@@ -37,5 +37,59 @@ public class Comment {
         this.createUserUd = createUserUd;
     }
 
+    public int getCommentId() {
+        return commentId;
+    }
 
+    public void setCommentId(int commentId) {
+        this.commentId = commentId;
+    }
+
+    public String getCommentDetail() {
+        return commentDetail;
+    }
+
+    public void setCommentDetail(String commentDetail) {
+        this.commentDetail = commentDetail;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public int getGreat() {
+        return great;
+    }
+
+    public void setGreat(int great) {
+        this.great = great;
+    }
+
+    public int getJokeId() {
+        return jokeId;
+    }
+
+    public void setJokeId(int jokeId) {
+        this.jokeId = jokeId;
+    }
+
+    public int getCreateUserUd() {
+        return createUserUd;
+    }
+
+    public void setCreateUserUd(int createUserUd) {
+        this.createUserUd = createUserUd;
+    }
+
+    public String getGreatUserIDList() {
+        return greatUserIDList;
+    }
+
+    public void setGreatUserIDList(String greatUserIDList) {
+        this.greatUserIDList = greatUserIDList;
+    }
 }
