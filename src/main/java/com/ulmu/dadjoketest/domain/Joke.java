@@ -11,9 +11,9 @@ public class Joke {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "joke_id", unique = true, nullable = false)
-    private int jokeId;    //pk ID
+    private Long jokeId;    //pk ID
     @Column(name = "joke_num", unique = false, nullable = false)
-    private int jokeNum;    //게시글 번호
+    private Long jokeNum;    //게시글 번호
     @Column(name = "title", unique = false, nullable = false)
     private String title;   //제목
     @Column(name = "detail", unique = false, nullable = false)
@@ -22,16 +22,16 @@ public class Joke {
     @CreationTimestamp
     private Date uploadedAt;   //업로드시간
     @Column(name = "views", unique = false, nullable = false)
-    private int views;  //조회수
+    private Long views;  //조회수
     @Column(name = "great", unique = false, nullable = false)
-    private int great;  //좋아요수
+    private Long great;  //좋아요수
     @Column(name = "create_user_id", unique = false, nullable = false)
-    private int createUserId; //작성자
+    private Long createUserId; //작성자
     @Column(name = "great_user_id_list", unique = false, nullable = false)
     private String greatUserIDList;     //좋아요 누른 유저 id list - 띄어쓰기로 구분해서 데이터 입력
                                         //DTO에서 Mapper가 List<String>을 ','로 구분되는 String으로 변환하여 통으로 저장하도록
 
-    public Joke(int jokeId, int jokeNum, String title, String detail, Date uploadedAt, int views, int great, int createUserId) {
+    public Joke(Long jokeId, Long jokeNum, String title, String detail, Date uploadedAt, Long views, Long great, Long createUserId) {
         this.jokeId = jokeId;
         this.jokeNum = jokeNum;
         this.title = title;
@@ -42,19 +42,19 @@ public class Joke {
         this.createUserId = createUserId;
     }
 
-    public int getJokeId() {
+    public Long getJokeId() {
         return jokeId;
     }
 
-    public void setJokeId(int jokeId) {
+    public void setJokeId(Long jokeId) {
         this.jokeId = jokeId;
     }
 
-    public int getJokeNum() {
+    public Long getJokeNum() {
         return jokeNum;
     }
 
-    public void setJokeNum(int jokeNum) {
+    public void setJokeNum(Long jokeNum) {
         this.jokeNum = jokeNum;
     }
 
@@ -82,27 +82,27 @@ public class Joke {
         this.uploadedAt = uploadedAt;
     }
 
-    public int getViews() {
+    public Long getViews() {
         return views;
     }
 
-    public void setViews(int views) {
+    public void setViews(Long views) {
         this.views = views;
     }
 
-    public int getGreat() {
+    public Long getGreat() {
         return great;
     }
 
-    public void setGreat(int great) {
+    public void setGreat(Long great) {
         this.great = great;
     }
 
-    public int getCreateUserId() {
+    public Long getCreateUserId() {
         return createUserId;
     }
 
-    public void setCreateUserId(int createUserId) {
+    public void setCreateUserId(Long createUserId) {
         this.createUserId = createUserId;
     }
 

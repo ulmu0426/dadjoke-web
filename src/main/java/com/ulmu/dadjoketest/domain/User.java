@@ -11,7 +11,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", unique = true, nullable = false)
-    private int userId;    //유저 고유 pk
+    private Long userId;    //유저 고유 pk
     @Column(name = "name", unique = false, nullable = false)
     private String name;    //닉네임
     @Column(name = "email", unique = false, nullable = false)
@@ -25,7 +25,7 @@ public class User {
     @CreationTimestamp
     private Date loginDate;    //마지막 로그인날짜
 
-    public User(int userId, String name, String email, String password, Date createdAt) {
+    public User(Long userId, String name, String email, String password, Date createdAt) {
         this.userId = userId;
         this.name = name;
         this.email = email;
@@ -33,11 +33,11 @@ public class User {
         this.createdAt = createdAt;
     }
 
-    public int getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
