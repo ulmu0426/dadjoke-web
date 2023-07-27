@@ -1,4 +1,4 @@
-package com.ulmu.dadjoketest.Domain;
+package com.ulmu.dadjoketest.domain;
 
 import org.hibernate.annotations.CreationTimestamp;
 

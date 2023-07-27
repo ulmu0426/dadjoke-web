@@ -1,10 +1,9 @@
-package com.ulmu.dadjoketest.Domain;
+package com.ulmu.dadjoketest.domain;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "comment", schema = "dadjoke", uniqueConstraints = {@UniqueConstraint(columnNames = "comment_id")})
