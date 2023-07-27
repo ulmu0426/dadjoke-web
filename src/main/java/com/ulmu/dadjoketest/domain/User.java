@@ -33,6 +33,10 @@ public class User {
         this.createdAt = createdAt;
     }
 
+    public User() {
+
+    }
+
     public Long getUserId() {
         return userId;
     }
