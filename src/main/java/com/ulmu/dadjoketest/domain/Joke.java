@@ -42,6 +42,10 @@ public class Joke {
         this.createUserId = createUserId;
     }
 
+    public Joke() {
+
+    }
+
     public Long getJokeId() {
         return jokeId;
     }
@@ -110,7 +114,7 @@ public class Joke {
         return greatUserIDList;
     }
 
-    public void setGreatUserIDList(String greatUserIDList) {
+    public void setGreatUserIdList(String greatUserIDList) {
         this.greatUserIDList = greatUserIDList;
     }
 }

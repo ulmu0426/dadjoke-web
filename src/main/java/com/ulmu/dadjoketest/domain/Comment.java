@@ -36,6 +36,10 @@ public class Comment {
         this.createUserUd = createUserUd;
     }
 
+    public Comment() {
+
+    }
+
     public Long getCommentId() {
         return commentId;
     }
@@ -80,15 +84,15 @@ public class Comment {
         return createUserUd;
     }
 
-    public void setCreateUserUd(Long createUserUd) {
+    public void setCreateUserId(Long createUserUd) {
         this.createUserUd = createUserUd;
     }
 
-    public String getGreatUserIDList() {
+    public String getGreatUserIdList() {
         return greatUserIDList;
     }
 
-    public void setGreatUserIDList(String greatUserIDList) {
+    public void setGreatUserIdList(String greatUserIDList) {
         this.greatUserIDList = greatUserIDList;
     }
 }
