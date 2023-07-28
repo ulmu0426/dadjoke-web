@@ -10,7 +10,6 @@ public class JokeDto {
     private String detail;
     private Date uploadedAt;
     private Long views;
-    private Long great;
     private Long createUserId;
     private List<Long> greatUserIdList;
 
@@ -63,11 +62,7 @@ public class JokeDto {
     }
 
     public Long getGreat() {
-        return great;
-    }
-
-    public void setGreat(Long great) {
-        this.great = great;
+        return (long) greatUserIdList.size();
     }
 
     public Long getCreateUserId() {

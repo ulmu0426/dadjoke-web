@@ -23,24 +23,11 @@ public class Joke {
     private Date uploadedAt;   //업로드시간
     @Column(name = "views", unique = false, nullable = false)
     private Long views;  //조회수
-    @Column(name = "great", unique = false, nullable = false)
-    private Long great;  //좋아요수
     @Column(name = "create_user_id", unique = false, nullable = false)
     private Long createUserId; //작성자
     @Column(name = "great_user_id_list", unique = false, nullable = false)
     private String greatUserIDList;     //좋아요 누른 유저 id list - 띄어쓰기로 구분해서 데이터 입력
                                         //DTO에서 Mapper가 List<String>을 ','로 구분되는 String으로 변환하여 통으로 저장하도록
-
-    public Joke(Long jokeId, Long jokeNum, String title, String detail, Date uploadedAt, Long views, Long great, Long createUserId) {
-        this.jokeId = jokeId;
-        this.jokeNum = jokeNum;
-        this.title = title;
-        this.detail = detail;
-        this.uploadedAt = uploadedAt;
-        this.views = views;
-        this.great = great;
-        this.createUserId = createUserId;
-    }
 
     public Joke() {
 
@@ -94,14 +81,6 @@ public class Joke {
         this.views = views;
     }
 
-    public Long getGreat() {
-        return great;
-    }
-
-    public void setGreat(Long great) {
-        this.great = great;
-    }
-
     public Long getCreateUserId() {
         return createUserId;
     }
@@ -115,6 +94,9 @@ public class Joke {
     }
 
     public void setGreatUserIdList(String greatUserIDList) {
-        this.greatUserIDList = greatUserIDList;
+        if(this.greatUserIDList.isEmpty()){
+            this.greatUserIDList = greatUserIDList;
+        }
+        this.greatUserIDList += "," + greatUserIDList;
     }
 }
