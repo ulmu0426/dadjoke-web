@@ -1,11 +1,11 @@
 package com.ulmu.dadjoketest.mapper;
 
-import com.ulmu.dadjoketest.domain.User;
+import com.ulmu.dadjoketest.domain.SiteUser;
 import com.ulmu.dadjoketest.dto.UserDto;
 
 public class UserMapper {
 
-    public static UserDto convertToDto(User user){
+    public static UserDto convertToDto(SiteUser user){
         UserDto userDto = new UserDto();
         userDto.setUserId(user.getUserId());
         userDto.setName(user.getName());
@@ -17,8 +17,8 @@ public class UserMapper {
         return userDto;
     }
 
-    public static User convertToModel(UserDto userDto){
-        User user = new User();
+    public static SiteUser convertToModel(UserDto userDto){
+        SiteUser user = new SiteUser();
         user.setUserId(userDto.getUserId());
         user.setName(userDto.getName());
         user.setEmail(userDto.getEmail());
@@ -28,4 +28,5 @@ public class UserMapper {
 
         return user;
     }
+
 }
