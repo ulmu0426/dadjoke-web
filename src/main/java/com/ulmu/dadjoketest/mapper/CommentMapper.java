@@ -13,9 +13,8 @@ public class CommentMapper {
         commentDto.setCommentId(comment.getCommentId());
         commentDto.setCommentDetail(comment.getCommentDetail());
         commentDto.setCreatedAt(comment.getCreatedAt());
-        commentDto.setGreat(comment.getGreat());
         commentDto.setJokeId(comment.getJokeId());
-        commentDto.setCreateUserId(comment.getCreateUserUd());
+        commentDto.setCreateUserId(comment.getCreateUserId());
         commentDto.setGreatUserIdList(convertToLongList(comment.getGreatUserIdList()));
         return commentDto;
     }
@@ -32,7 +31,6 @@ public class CommentMapper {
         comment.setCommentId(commentDto.getCommentId());
         comment.setCommentDetail(commentDto.getCommentDetail());
         comment.setCreatedAt(commentDto.getCreatedAt());
-        comment.setGreat(commentDto.getGreat());
         comment.setJokeId(commentDto.getJokeId());
         comment.setCreateUserId(commentDto.getCreateUserId());
         comment.setGreatUserIdList(convertToLongList(commentDto.getGreatUserIdList()));
