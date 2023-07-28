@@ -16,7 +16,6 @@ public class JokeMapper {
         jokeDto.setTitle(joke.getTitle());
         jokeDto.setDetail(joke.getDetail());
         jokeDto.setViews(joke.getViews());
-        jokeDto.setGreat(joke.getGreat());
         jokeDto.setCreateUserId(joke.getCreateUserId());
         jokeDto.setUploadedAt(joke.getUploadedAt());
         jokeDto.setGreatUserIdList(convertToList(joke.getGreatUserIDList()));
@@ -39,7 +38,6 @@ public class JokeMapper {
         joke.setTitle(jokeDto.getTitle());
         joke.setDetail(jokeDto.getDetail());
         joke.setViews(jokeDto.getViews());
-        joke.setGreat(jokeDto.getGreat());
         joke.setCreateUserId(jokeDto.getCreateUserId());
         joke.setUploadedAt(jokeDto.getUploadedAt());
         joke.setGreatUserIdList(convertToList(jokeDto.getGreatUserIdList()));
@@ -52,6 +50,10 @@ public class JokeMapper {
                 .map(n -> String.valueOf(n))
                 .collect(Collectors.joining(","));
         return convertedString;
+    }
+
+    public static List<JokeDto> convertToDtoList(List<Joke> jokeList){
+        return jokeList.stream().map(JokeMapper::convertToDto).collect(Collectors.toList());
     }
 
 }
