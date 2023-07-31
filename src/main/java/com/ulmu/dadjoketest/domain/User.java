@@ -3,15 +3,19 @@ package com.ulmu.dadjoketest.domain;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
 @Table(name = "user", schema = "dadjoke", uniqueConstraints = {@UniqueConstraint(columnNames = "user_id")})
 @Getter
 @Setter
-public class SiteUser {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", unique = true, nullable = false)
@@ -34,16 +38,37 @@ public class SiteUser {
     @CreationTimestamp
     private Date loginDate;    //마지막 로그인날짜
 
-    public SiteUser(Long userId, String name, String email, String password, Date createdAt) {
-        this.userId = userId;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.createdAt = createdAt;
-    }
-
-    public SiteUser() {
+    public User() {
 
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public String getUsername() {
+        return String.valueOf(name);
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

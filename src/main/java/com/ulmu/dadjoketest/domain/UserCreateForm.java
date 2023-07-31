@@ -1,4 +1,4 @@
-package com.ulmu.dadjoketest.service;
+package com.ulmu.dadjoketest.domain;
 
 import lombok.Getter;
 import lombok.Setter;
