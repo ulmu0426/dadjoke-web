@@ -93,6 +93,19 @@ class JokeServiceTest {
 
     @Test
     void putJoke() {
+        Joke joke = new Joke();
+        joke.setTitle("before changed title");
+        joke.setDetail("before changed detail");
+        joke.setCreateUserId(123L);
+        joke.setGreat(10L);
+        Joke savedJoke = jokeRepository.save(joke);
+        JokeDto resJokeDto = new JokeDto();
+        resJokeDto.setTitle("after changed title");
+        resJokeDto.setDetail("after changed detail");
+        JokeDto changedJoke = jokeService.putJoke(savedJoke.getJokeId(), resJokeDto);
+
+        assertEquals(savedJoke.getTitle(), changedJoke.getTitle());
+        assertEquals(savedJoke.getDetail(), changedJoke.getDetail());
     }
 
     @Test
