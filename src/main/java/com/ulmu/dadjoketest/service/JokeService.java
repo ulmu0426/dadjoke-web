@@ -38,7 +38,7 @@ public class JokeService {
                 jokes = jokeRepository.findByJokeNumContainingOrderByUploadedAtAsc(keyword);
             }
         }else if(Objects.equals(sort, "great")){
-            jokes = jokeRepository.findByJokeNumContainingOrderByGreatDesc(keyword);
+            jokes = jokeRepository.findByTitleContainingOrderByGreatDesc(keyword);
         }else {
             throw new IllegalAccessException("정렬 기준이 없음");
         }
