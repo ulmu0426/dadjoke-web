@@ -15,6 +15,6 @@ public interface JokeRepository extends JpaRepository<Joke, Long> {
     List<Joke> findByJokeNumContainingOrderByUploadedAtAsc(String keyword);
 
     //추천순 정렬(높은순서)
-    List<Joke> findByTitleContainingOrderByGreatDesc(String keyword);
+    List<Joke> findByJokeNumContainingOrderByGreatDesc(String keyword);
 
 }

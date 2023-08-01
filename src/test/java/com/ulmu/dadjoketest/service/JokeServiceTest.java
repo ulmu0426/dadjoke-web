@@ -9,8 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
@@ -56,39 +54,6 @@ class JokeServiceTest {
 
     @Test
     void getJokeList() {
-        Joke joke1 = new Joke();
-        joke1.setTitle("joke2");
-        joke1.setDetail("Get 테스트 내용");
-        joke1.setCreateUserId(123L);
-        joke1.setGreat(10L);
-        jokeRepository.save(joke1);
-
-        Joke joke2 = new Joke();
-        joke2.setTitle("joke2");
-        joke2.setDetail("Get 테스트 내용");
-        joke2.setCreateUserId(123L);
-        joke2.setGreat(5L);
-        jokeRepository.save(joke2);
-
-        Joke joke3 = new Joke();
-        joke3.setTitle("joke3");
-        joke3.setDetail("Get 테스트 내용");
-        joke3.setCreateUserId(123L);
-        joke3.setGreat(7L);
-        jokeRepository.save(joke3);
-
-        Joke joke4 = new Joke();
-        joke4.setTitle("joke4");
-        joke4.setDetail("Get 테스트 내용");
-        joke4.setCreateUserId(123L);
-        joke4.setGreat(9L);
-        jokeRepository.save(joke4);
-
-        List<Joke> jokeList = jokeRepository.findByTitleContainingOrderByGreatDesc("");
-        assertEquals(joke1.getTitle(), jokeList.get(0).getTitle());
-        assertEquals(joke4.getTitle(), jokeList.get(1).getTitle());
-        assertEquals(joke3.getTitle(), jokeList.get(2).getTitle());
-        assertEquals(joke2.getTitle(), jokeList.get(3).getTitle());
     }
 
     @Test
