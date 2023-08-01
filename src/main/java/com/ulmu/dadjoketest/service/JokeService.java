@@ -33,12 +33,12 @@ public class JokeService {
         List<Joke> jokes;
         if(Objects.equals(sort, "createdAt")){
             if(Objects.equals(orderBy, "desc")) {
-                jokes = jokeRepository.findByJokeContainingOrderByCreatedAtDesc(keyword);
+                jokes = jokeRepository.findByJokeNumContainingOrderByUploadedAtDesc(keyword);
             }else {
-                jokes = jokeRepository.findByJokeContainingOrderByCreatedAtAsc(keyword);
+                jokes = jokeRepository.findByJokeNumContainingOrderByUploadedAtAsc(keyword);
             }
         }else if(Objects.equals(sort, "great")){
-            jokes = jokeRepository.findByJokeContainingOrderByGreatDesc(keyword);
+            jokes = jokeRepository.findByJokeNumContainingOrderByGreatDesc(keyword);
         }else {
             throw new IllegalAccessException("정렬 기준이 없음");
         }

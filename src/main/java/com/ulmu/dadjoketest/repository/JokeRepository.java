@@ -9,12 +9,12 @@ import java.util.List;
 @Repository
 public interface JokeRepository extends JpaRepository<Joke, Long> {
     //최신순 정렬
-    List<Joke> findByJokeContainingOrderByCreatedAtDesc(String keyword);
+    List<Joke> findByJokeNumContainingOrderByUploadedAtDesc(String keyword);
 
     //등록순 정렬
-    List<Joke> findByJokeContainingOrderByCreatedAtAsc(String keyword);
+    List<Joke> findByJokeNumContainingOrderByUploadedAtAsc(String keyword);
 
     //추천순 정렬(높은순서)
-    List<Joke> findByJokeContainingOrderByGreatDesc(String keyword);
+    List<Joke> findByJokeNumContainingOrderByGreatDesc(String keyword);
 
 }
