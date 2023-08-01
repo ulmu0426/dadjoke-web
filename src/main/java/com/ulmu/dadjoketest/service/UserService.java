@@ -1,6 +1,7 @@
 package com.ulmu.dadjoketest.service;
 
-import com.ulmu.dadjoketest.domain.SiteUser;
+import com.ulmu.dadjoketest.domain.User;
+import com.ulmu.dadjoketest.domain.UserCreateForm;
 import com.ulmu.dadjoketest.dto.UserDto;
 import com.ulmu.dadjoketest.mapper.UserMapper;
 import com.ulmu.dadjoketest.repository.UserRepository;
@@ -14,7 +15,7 @@ public class UserService {
     private UserCreateForm userCreateForm;
     public UserDto createUser(UserCreateForm userCreateForm){
 
-        SiteUser newUser = new SiteUser();
+        User newUser = new User();
         newUser.setName(userCreateForm.getUserName());
         newUser.setEmail(userCreateForm.getEmail());
         newUser.setPassword(passwordEncoder.encode(userCreateForm.getPassword2()));
