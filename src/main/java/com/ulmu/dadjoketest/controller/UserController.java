@@ -1,7 +1,7 @@
 package com.ulmu.dadjoketest.controller;
 
+import com.ulmu.dadjoketest.domain.UserCreateForm;
 import com.ulmu.dadjoketest.dto.UserDto;
-import com.ulmu.dadjoketest.service.UserCreateForm;
 import com.ulmu.dadjoketest.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
