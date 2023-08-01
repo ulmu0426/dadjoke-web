@@ -52,7 +52,8 @@ public class Joke {
     public void setGreatUserIdList(String greatUserIDList) {
         if(this.greatUserIDList.isEmpty()){
             this.greatUserIDList = greatUserIDList;
+        }else {
+            this.greatUserIDList += "," + greatUserIDList;
         }
-        this.greatUserIDList += "," + greatUserIDList;
     }
 }

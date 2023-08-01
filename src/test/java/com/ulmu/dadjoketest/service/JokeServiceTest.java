@@ -2,6 +2,7 @@ package com.ulmu.dadjoketest.service;
 
 import com.ulmu.dadjoketest.domain.Joke;
 import com.ulmu.dadjoketest.dto.JokeDto;
+import com.ulmu.dadjoketest.mapper.JokeMapper;
 import com.ulmu.dadjoketest.repository.JokeRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -129,6 +130,19 @@ class JokeServiceTest {
 
     @Test
     void greatJoke() {
+        Joke joke = new Joke();
+        joke.setTitle("title");
+        joke.setDetail("detail");
+        joke.setCreateUserId(123L);
+        joke.setGreat(0L);
+        Joke savedJoke = jokeRepository.save(joke);
+
+        jokeService.greatJoke(savedJoke.getJokeId(), "204");
+        jokeService.greatJoke(savedJoke.getJokeId(), "205");
+        jokeService.greatJoke(savedJoke.getJokeId(), "206");
+        JokeDto jokeDto = JokeMapper.convertToDto(jokeRepository.findById(savedJoke.getJokeId()).get());
+        
+        assertEquals(3L, jokeDto.getGreat());
     }
 
 }
