@@ -9,8 +9,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 @Transactional
@@ -109,6 +111,20 @@ class JokeServiceTest {
 
     @Test
     void deleteJoke() {
+        Joke joke = new Joke();
+        joke.setTitle("before changed title");
+        joke.setDetail("before changed detail");
+        joke.setCreateUserId(123L);
+        joke.setGreat(10L);
+        Joke savedJoke = jokeRepository.save(joke);
+
+        JokeDto jokeDto = jokeService.getJoke(savedJoke.getJokeId());
+        Long jokeId = jokeDto.getJokeId();
+
+        jokeService.deleteJoke(jokeId);
+
+        Optional<Joke> res = this.jokeRepository.findById(jokeId);
+        assertTrue(res.isEmpty());
     }
 
     @Test
