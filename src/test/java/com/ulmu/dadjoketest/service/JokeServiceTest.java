@@ -1,5 +1,6 @@
 package com.ulmu.dadjoketest.service;
 
+import com.ulmu.dadjoketest.domain.Joke;
 import com.ulmu.dadjoketest.dto.JokeDto;
 import com.ulmu.dadjoketest.repository.JokeRepository;
 import org.junit.jupiter.api.Test;
@@ -37,6 +38,18 @@ class JokeServiceTest {
 
     @Test
     void getJoke() {
+        Joke joke = new Joke();
+        joke.setTitle("Get 테스트 제목");
+        joke.setDetail("Get 테스트 내용");
+        joke.setCreateUserId(123L);
+
+        Joke savedJoke = jokeRepository.save(joke);
+
+        JokeDto resJoke = jokeService.getJoke(savedJoke.getJokeId());
+
+        assertEquals(savedJoke.getTitle(), resJoke.getTitle());
+        assertEquals(savedJoke.getDetail(), resJoke.getDetail());
+        assertEquals(savedJoke.getCreateUserId(), resJoke.getCreateUserId());
     }
 
     @Test

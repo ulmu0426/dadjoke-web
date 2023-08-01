@@ -18,7 +18,9 @@ public class JokeMapper {
         jokeDto.setViews(joke.getViews());
         jokeDto.setCreateUserId(joke.getCreateUserId());
         jokeDto.setUploadedAt(joke.getUploadedAt());
-        jokeDto.setGreatUserIdList(convertToList(joke.getGreatUserIDList()));
+        if(!joke.getGreatUserIDList().isEmpty()) {
+            jokeDto.setGreatUserIdList(convertToList(joke.getGreatUserIDList()));
+        }
 
         return jokeDto;
     }
