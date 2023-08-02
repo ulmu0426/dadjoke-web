@@ -26,11 +26,10 @@ public class JokeMapper {
     }
 
     private static List<Long> convertToList(String greatUserIdList){
-        List<Long> convertedList = Stream.of(greatUserIdList.split(","))
+        return Stream.of(greatUserIdList.split(","))
                 .map(String::trim)
                 .map(Long::parseLong)
                 .collect(Collectors.toList());
-        return convertedList;
     }
 
     public static Joke convertToModel(JokeDto jokeDto){
@@ -52,14 +51,15 @@ public class JokeMapper {
     }
 
     private static String convertToList(List<Long> greatUserIdList){
-        String convertedString = greatUserIdList.stream()
+        return greatUserIdList.stream()
                 .map(n -> String.valueOf(n))
                 .collect(Collectors.joining(","));
-        return convertedString;
     }
 
     public static List<JokeDto> convertToDtoList(List<Joke> jokeList){
-        return jokeList.stream().map(JokeMapper::convertToDto).collect(Collectors.toList());
+        return jokeList.stream()
+                .map(JokeMapper::convertToDto)
+                .collect(Collectors.toList());
     }
 
 }
