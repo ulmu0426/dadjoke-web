@@ -2,13 +2,13 @@ package com.ulmu.dadjoketest.service;
 
 import com.ulmu.dadjoketest.domain.Comment;
 import com.ulmu.dadjoketest.dto.CommentDto;
+import com.ulmu.dadjoketest.mapper.CommentMapper;
 import com.ulmu.dadjoketest.repository.CommentRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
-
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -60,5 +60,18 @@ class CommentServiceTest {
 
     @Test
     void greatComment() {
+        Comment comment = new Comment();
+        comment.setCommentDetail("삭제 내용");
+        comment.setCreateUserId(123L);
+        comment.setJokeId(11L);
+
+        Comment savedComment = this.commentRepository.save(comment);
+
+        commentService.greatComment(savedComment.getCommentId(), "204");
+        commentService.greatComment(savedComment.getCommentId(), "205");
+        commentService.greatComment(savedComment.getCommentId(), "206");
+        CommentDto commentDto = CommentMapper.convertToDto(commentRepository.findById(savedComment.getCommentId()).get());
+
+        assertEquals(3L, commentDto.getGreat());
     }
 }

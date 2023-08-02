@@ -21,7 +21,7 @@ public class CommentDto {
 
     private List<Long> greatUserIdList;
 
-    public Long getGreat(Long great) {
+    public Long getGreat() {
         return (long) this.greatUserIdList.size();
     }
 
