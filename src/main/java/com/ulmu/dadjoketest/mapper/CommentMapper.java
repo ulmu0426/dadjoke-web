@@ -15,7 +15,9 @@ public class CommentMapper {
         commentDto.setCreatedAt(comment.getCreatedAt());
         commentDto.setJokeId(comment.getJokeId());
         commentDto.setCreateUserId(comment.getCreateUserId());
-        commentDto.setGreatUserIdList(convertToLongList(comment.getGreatUserIdList()));
+        if (!comment.getGreatUserIdList().isEmpty()) {
+            commentDto.setGreatUserIdList(convertToLongList(comment.getGreatUserIdList()));
+        }
         return commentDto;
     }
     private static List<Long> convertToLongList(String greatUserIdList){
@@ -26,14 +28,16 @@ public class CommentMapper {
         return convertedList;
     }
 
-    public static Comment convertToDto(CommentDto commentDto){
+    public static Comment convertToModel(CommentDto commentDto){
         Comment comment = new Comment();
         comment.setCommentId(commentDto.getCommentId());
         comment.setCommentDetail(commentDto.getCommentDetail());
         comment.setCreatedAt(commentDto.getCreatedAt());
         comment.setJokeId(commentDto.getJokeId());
         comment.setCreateUserId(commentDto.getCreateUserId());
-        comment.setGreatUserIdList(convertToLongList(commentDto.getGreatUserIdList()));
+        if (commentDto.getGreatUserIdList() != null) {
+            comment.setGreatUserIdList(convertToLongList(commentDto.getGreatUserIdList()));
+        }
         return comment;
     }
     private static String convertToLongList(List<Long> greatUserIdList){

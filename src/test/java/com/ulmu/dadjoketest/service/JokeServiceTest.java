@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Transactional
 class JokeServiceTest {
     @Autowired
-    private JokeRepository jokeRepository;
+    JokeRepository jokeRepository;
 
     @Autowired
     JokeService jokeService;
@@ -36,8 +36,6 @@ class JokeServiceTest {
         assertEquals("테스트 제목",newJokeDto.getTitle());
         assertEquals("테스트 내용",newJokeDto.getDetail());
         assertEquals(123L,newJokeDto.getCreateUserId());
-        System.out.println(newJokeDto.getJokeId());
-        System.out.println(newJokeDto.getUploadedAt());
     }
 
     @Test

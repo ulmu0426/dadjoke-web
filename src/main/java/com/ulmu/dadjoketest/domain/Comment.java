@@ -38,6 +38,15 @@ public class Comment {
                                         //DTO에서 Mapper가 List<String>을 ','로 구분되는 String으로 변환하여 통으로 저장하도록
 
     public Comment() {
+        this.great = 0L;
+        this.greatUserIdList = "";
+    }
 
+    public void setGreatUserIdList(String greatUserId){
+        if(this.greatUserIdList.isEmpty()){
+            this.greatUserIdList = greatUserId;
+        }else {
+            this.greatUserIdList += "," + greatUserId;
+        }
     }
 }
