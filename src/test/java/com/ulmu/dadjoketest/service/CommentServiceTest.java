@@ -56,12 +56,24 @@ class CommentServiceTest {
 
     @Test
     void putComment() {
+        Comment comment = new Comment();
+        comment.setCommentDetail("수정 전 댓글");
+        comment.setCreateUserId(123L);
+        comment.setJokeId(11L);
+
+        Comment savedComment = this.commentRepository.save(comment);
+        CommentDto inputCommentDto = new CommentDto();
+        inputCommentDto.setCommentDetail("수정 후 댓글");
+
+        CommentDto changedCommentDto = this.commentService.putComment(savedComment.getCommentId(), inputCommentDto);
+
+        assertEquals(changedCommentDto.getCommentDetail(), commentRepository.findById(savedComment.getCommentId()).get().getCommentDetail());
     }
 
     @Test
     void greatComment() {
         Comment comment = new Comment();
-        comment.setCommentDetail("삭제 내용");
+        comment.setCommentDetail("좋아요할 댓글");
         comment.setCreateUserId(123L);
         comment.setJokeId(11L);
 
