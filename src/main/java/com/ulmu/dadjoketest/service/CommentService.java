@@ -7,6 +7,7 @@ import com.ulmu.dadjoketest.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -59,6 +60,16 @@ public class CommentService {
             throw new NoSuchElementException(String.format("해당 댓글 %s가 존재하지 않습니다.", commentId));
         }else {
             return CommentMapper.convertToDto(res.get());
+        }
+    }
+
+    public List<CommentDto> getCommentList(Long jokeId){
+        List<Comment> commentList;
+        commentList = commentRepository.findAllByJokeIdOrderByCommentId(jokeId);
+        if(commentList.isEmpty()){
+            throw new NoSuchElementException("해당 농담 글에 달린 댓글이 존재하지 않습니다.");
+        }else {
+            return CommentMapper.convertToDtoList(commentList);
         }
     }
 }

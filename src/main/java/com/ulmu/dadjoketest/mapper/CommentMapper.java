@@ -46,4 +46,10 @@ public class CommentMapper {
                 .collect(Collectors.joining(","));
         return convertedList;
     }
+
+    public static List<CommentDto> convertToDtoList(List<Comment> commentList) {
+        return commentList.stream()
+                .map(CommentMapper::convertToDto)
+                .collect(Collectors.toList());
+    }
 }

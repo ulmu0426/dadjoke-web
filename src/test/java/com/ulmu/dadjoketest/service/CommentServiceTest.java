@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -85,5 +86,37 @@ class CommentServiceTest {
         CommentDto commentDto = CommentMapper.convertToDto(commentRepository.findById(savedComment.getCommentId()).get());
 
         assertEquals(3L, commentDto.getGreat());
+    }
+
+    @Test
+    void getCommentList() {
+        Comment comment1 = new Comment();
+        comment1.setCommentDetail("11 유머글 댓글1");
+        comment1.setCreateUserId(111L);
+        comment1.setJokeId(11L);
+
+        Comment comment2 = new Comment();
+        comment2.setCommentDetail("11 유머글 댓글2");
+        comment2.setCreateUserId(222L);
+        comment2.setJokeId(11L);
+
+        Comment comment3 = new Comment();
+        comment3.setCommentDetail("11 유머글 댓글3");
+        comment3.setCreateUserId(333L);
+        comment3.setJokeId(11L);
+
+        Comment comment4 = new Comment();
+        comment4.setCommentDetail("11 유머글 댓글4");
+        comment4.setCreateUserId(444L);
+        comment4.setJokeId(11L);
+
+        this.commentRepository.save(comment1);
+        this.commentRepository.save(comment2);
+        this.commentRepository.save(comment3);
+        this.commentRepository.save(comment4);
+
+        List<CommentDto> commentList = commentService.getCommentList(11L);
+
+        assertEquals(4, commentList.size());
     }
 }
