@@ -52,4 +52,13 @@ public class CommentService {
 
         return CommentMapper.convertToDto(savedComment);
     }
+
+    public CommentDto getComment(Long commentId) {
+        Optional<Comment> res = commentRepository.findById(commentId);
+        if (res.isEmpty()){
+            throw new NoSuchElementException(String.format("해당 댓글 %s가 존재하지 않습니다.", commentId));
+        }else {
+            return CommentMapper.convertToDto(res.get());
+        }
+    }
 }
