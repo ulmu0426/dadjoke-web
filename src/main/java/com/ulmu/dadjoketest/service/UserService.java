@@ -3,6 +3,7 @@ package com.ulmu.dadjoketest.service;
 import com.ulmu.dadjoketest.domain.User;
 import com.ulmu.dadjoketest.domain.UserCreateForm;
 import com.ulmu.dadjoketest.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +12,15 @@ import java.util.Optional;
 
 @Service
 public class UserService {
+    @Autowired
     private UserRepository userRepository;
-    private PasswordEncoder passwordEncoder;
-    private UserCreateForm userCreateForm;
-    public Boolean createUser(UserCreateForm userCreateForm){
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    private UserCreateForm userCreateForm;
+
+    public Boolean createUser(UserCreateForm userCreateForm){
         User newUser = new User();
         newUser.setName(userCreateForm.getUserName());
         newUser.setEmail(userCreateForm.getEmail());
