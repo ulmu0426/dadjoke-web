@@ -41,7 +41,7 @@ public class UserService {
         if(user.isEmpty()){
             throw new NoSuchElementException("해당 유저가 존재하지 않습니다.");
         }
-        return passwordEncoder.matches(user.get().getPassword(),password);
+        return passwordEncoder.matches(password, user.get().getPassword());
     }
 
 }

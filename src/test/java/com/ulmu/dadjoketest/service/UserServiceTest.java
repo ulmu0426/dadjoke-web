@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import javax.transaction.Transactional;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
@@ -39,5 +40,20 @@ class UserServiceTest {
         System.out.println(createdUser.get().getEmail());
         System.out.println(createdUser.get().getPassword());
         System.out.println(createdUser.get().getCreatedAt());
+    }
+
+    @Test
+    void passwordCheck() {
+        User user = new User();
+        user.setName("비밀번호 테스트");
+        user.setEmail("test@naver.com");
+        user.setPassword(passwordEncoder.encode("testPass"));
+        User savedUser = this.userRepository.save(user);
+
+        Boolean pass1 = userService.passwordCheck(savedUser.getUserId(), "testPass");
+        assertTrue(pass1);
+
+        Boolean pass2 = userService.passwordCheck(savedUser.getUserId(), "failed");
+        assertFalse(pass2);
     }
 }
