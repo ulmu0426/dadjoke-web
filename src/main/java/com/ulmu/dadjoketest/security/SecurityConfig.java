@@ -11,10 +11,12 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import javax.servlet.DispatcherType;
 import java.util.Optional;
 
 @Configuration
@@ -29,10 +31,10 @@ public class SecurityConfig implements UserDetailsService{
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         //접근권한 설정
-        http.authorizeHttpRequests().antMatchers("/admin/**").hasRole("ADMIN");     //관리자 페이지, 해당 권한이 있으면 허용
-        http.authorizeHttpRequests().antMatchers("/member/**").hasAnyRole("ADMIN", "MEMBER");   //관리자, 맴버 역할 중 하나만 있으면 허용
-
-        http.authorizeHttpRequests().anyRequest().permitAll();  //임시로 모든 요청 허용
+        http.authorizeHttpRequests()
+                .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
+                .antMatchers("/login","/join","/joke/**","/joke/comment/**").permitAll()    //로그인,회원가입,게시판,게시판댓글 페이지 권한 허가
+                .anyRequest().permitAll();  //임시로 모든 요청 허용
 
         //사이트 위변조 요청 방지
         http.csrf().disable();
@@ -49,7 +51,7 @@ public class SecurityConfig implements UserDetailsService{
         //로그아웃 설정
         http.logout()
                 .invalidateHttpSession(true)
-                .logoutRequestMatcher(new AntPathRequestMatcher("/user2/logout"));
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
 
         //사용자 인증 처리 컴포넌트 서비스 등록
         http.userDetailsService((UserDetailsService) userService);
@@ -58,7 +60,7 @@ public class SecurityConfig implements UserDetailsService{
 
     @Bean
     public PasswordEncoder passwordEncoder(){
-        return new UserPasswordEncoder();
+        return new BCryptPasswordEncoder();
     }
 
     @Override
