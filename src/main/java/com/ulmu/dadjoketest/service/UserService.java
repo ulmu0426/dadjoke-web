@@ -44,4 +44,12 @@ public class UserService {
         return passwordEncoder.matches(password, user.get().getPassword());
     }
 
+    public void deleteUser(Long userId){
+        Optional<User> user = userRepository.findById(userId);
+        if(user.isEmpty()){
+            throw new NoSuchElementException("해당 유저가 존재하지 않습니다.");
+        }
+        this.userRepository.delete(user.get());
+    }
+
 }

@@ -10,8 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import javax.transaction.Transactional;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
@@ -55,5 +54,23 @@ class UserServiceTest {
 
         Boolean pass2 = userService.passwordCheck(savedUser.getUserId(), "failed");
         assertFalse(pass2);
+    }
+
+    @Test
+    void deleteUser() {
+        User user = new User();
+        user.setName("회원 삭제 테스트");
+        user.setEmail("test@naver.com");
+        user.setPassword(passwordEncoder.encode("testPass"));
+        User savedUser = this.userRepository.save(user);
+        Long savedUserId = savedUser.getUserId();
+
+        Optional<User> create = userRepository.findById(savedUserId);
+        assertEquals("회원 삭제 테스트", create.get().getName());
+
+        userService.deleteUser(savedUserId);
+
+        Optional<User> deleted = userRepository.findById(savedUserId);
+        assertTrue(deleted.isEmpty());
     }
 }

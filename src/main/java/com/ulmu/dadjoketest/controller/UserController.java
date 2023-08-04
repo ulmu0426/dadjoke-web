@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/user")
@@ -30,11 +27,19 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String login(UserDto userLoginDto){
+    public String login(@RequestBody final UserDto userLoginDto){
+        //로그인 요청
         boolean isValidUser = userService.passwordCheck(userLoginDto.getUserId(), userLoginDto.getPassword());
         if(isValidUser){
             return "joke";
         }
         return "login";
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<Void> deleteUser(@PathVariable("userId") final Long userId){
+        //회원탈퇴 요청
+        userService.deleteUser(userId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
